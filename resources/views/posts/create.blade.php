@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <br>
     <br>
@@ -13,6 +12,7 @@
         {{Form::label('body','Enter Your Hobbies')}}
         {{Form::textarea('body','',['id'=>'article-ckeditor','class'=>'form-control','placeholder'=>'Body Text'])}}
     </div>
+    
     {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}
 @endsection

@@ -21,6 +21,7 @@
                     <br>
                    
                     <a href="/posts/create" class="btn btn-primary">Add Your Slambook Details</a>
+                    <a href="add" class="btn btn-primary">Add Your Slambook Details NOsql</a>
                     <br>
                     <p> Click Below To Logout</p>
                     <a class="dropdown-item" href="{{ route('logout') }}"
