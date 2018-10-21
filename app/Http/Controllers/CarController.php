@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Car;
 
+use Auth;
 class CarController extends Controller
 {
     public function create()
@@ -16,6 +17,7 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $car = new Car();
+        $car->username =Auth::user()->name;
         $car->carcompany = $request->get('carcompany');
         $car->model = $request->get('model');
         $car->price = $request->get('price');        
@@ -28,9 +30,9 @@ class CarController extends Controller
         $car->favoritebike = $request->get('favoritebike');
         $car->favoritecar = $request->get('favoritecar');
         $car->favoritebrand = $request->get('favoritebrand');
-
+        $car->friendsname = $request->get('friendsname');
         $car->save();
-        return redirect('car')->with('success', 'Car has been successfully added');
+        return redirect('car')->with('success', 'Slambook details have been successfully added');
     }
     public function index()
     {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 @if(Auth::check())
+{{-- @if(Auth::user()->email==$cars as $car->username) --}}
     <html>
       <head>
         <meta charset="utf-8">
@@ -14,135 +15,111 @@
             <p>{{ \Session::get('success') }}</p>
           </div><br />
         @endif
-        <table class="table table-striped">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>ID</th>
-            @if($cars[sizeof($cars)-1]->carcompany!=NULL)
+            <th>Username</th>
+            <th>Friends Name</th>
+    {{-- @if($cars[sizeof($cars)-1]->carcompany!=NULL) --}}
                 <th>Hobby</th>
-            @endif
-            
-            @if($cars[sizeof($cars)-1]->model!=NULL)
+            {{-- @endif --}}
+            {{-- @if($cars[sizeof($cars)-1]->model!=NULL) --}}
                 <th>Actress</th>
-            @endif
-            
-            @if($cars[sizeof($cars)-1]->price!=NULL)
+            {{-- @endif --}}
+            {{-- @if($cars[sizeof($cars)-1]->price!=NULL) --}}
                 <th>Number</th>
-            @endif
+            {{-- @endif --}}
+            
             
 
-
-            @if($cars[sizeof($cars)-1]->instalink!=NULL)
+            {{-- @if($cars[sizeof($cars)-1]->instalink!=NULL) --}}
             <th>Instagram Link</th>
-            @endif
+            {{-- @endif --}}
 
-            @if($cars[sizeof($cars)-1]->fblink!=NULL)
+            {{-- @if($cars[sizeof($cars)-1]->fblink!=NULL) --}}
             <th>Facebook Link</th>
-            @endif
+            {{-- @endif --}}
 
-            @if($cars[sizeof($cars)-1]->fblink!=NULL)
+            {{-- @if($cars[sizeof($cars)-1]->fblink!=NULL) --}}
             <th>Photo Link</th>
-            @endif
+            {{-- @endif --}}
 
-            @if($cars[sizeof($cars)-1]->snapchatid!=NULL)
+            {{-- @if($cars[sizeof($cars)-1]->snapchatid!=NULL) --}}
             <th>snapchat Id</th>
-            @endif
+            {{-- @endif --}}
 
-            @if($cars[sizeof($cars)-1]->sportsperson!=NULL)
+            {{-- @if($cars[sizeof($cars)-1]->sportsperson!=NULL) --}}
             <th>Sports Person</th>
-            @endif
+            {{-- @endif --}}
 
-            @if($cars[sizeof($cars)-1]->favoritebook!=NULL)
+            {{-- @if($cars[sizeof($cars)-1]->favoritebook!=NULL) --}}
             <th>Favorite Book</th>
-            @endif
+            {{-- @endif --}}
 
-            @if($cars[sizeof($cars)-1]->favoritebike!=NULL)
+            {{-- @if($cars[sizeof($cars)-1]->favoritebike!=NULL) --}}
             <th>Favorite Bike</th>
-            @endif
+            {{-- @endif --}}
 
-            @if($cars[sizeof($cars)-1]->favoritecar!=NULL)
+            {{-- @if($cars[sizeof($cars)-1]->favoritecar!=NULL) --}}
             <th>Favorite Car</th>
-            @endif
+            {{-- @endif --}}
 
-            @if($cars[sizeof($cars)-1]->favoritebrand!=NULL)
+            {{-- @if($cars[sizeof($cars)-1]->favoritebrand!=NULL) --}}
             <th>Favorite Brand</th>
-            @endif
+            {{-- @endif --}}
 
             <th colspan="2">Action</th>
           </tr>
         </thead>
         <tbody>
-              
-            <tr>
-            
-          <td>({{$cars[sizeof($cars)-1]->id}}</td>
-                
-          @if($cars[sizeof($cars)-1]->carcompany!=NULL)    
-                    <td>
-                    {{$cars[sizeof($cars)-1]->carcompany}}
-                    </td>        
-            @endif
-            
-
-            @if($cars[sizeof($cars)-1]->model!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->model}}</td>
-            @endif
-                
-            @if($cars[sizeof($cars)-1]->price!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->price}}</td>
-            @endif
-
-            @if($cars[sizeof($cars)-1]->instalink!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->instalink}}</td>
-            @endif
-
-            @if($cars[sizeof($cars)-1]->fblink!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->fblink}}</td>
-            @endif
-            
-            @if($cars[sizeof($cars)-1]->photolink!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->photolink}}</td>
-            @endif
-
-            @if($cars[sizeof($cars)-1]->snapchatid!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->snapchatid}}</td>
-            @endif
-
-            @if($cars[sizeof($cars)-1]->sportsperson!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->sportsperson}}</td>
-            @endif
-
-            @if($cars[sizeof($cars)-1]->favoritebook!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->favoritebook}}</td>
-            @endif
-
-            @if($cars[sizeof($cars)-1]->favoritebike!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->favoritebike}}</td>
-            @endif
-
-            @if($cars[sizeof($cars)-1]->favoritecar!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->favoritecar}}</td>
-            @endif
-
-            @if($cars[sizeof($cars)-1]->favoritebrand!=NULL)
-                <td>{{$cars[sizeof($cars)-1]->favoritebrand}}</td>
-            @endif
-
-            <td><a href="{{action('CarController@edit', $cars[sizeof($cars)-1]->id)}}" class="btn btn-warning">Edit</a></td>
-            <td>
-              <form action="{{action('CarController@destroy', $cars[sizeof($cars)-1]->id)}}" method="post">
-                @csrf
-                <input name="_method" type="hidden" value="DELETE">
-                <button class="btn btn-danger" type="submit">Delete</button>
-              </form>
-            </td>
-          </tr>
+  {{-- @endif                    --}}
+  @foreach($cars as $car)
+    {{-- @if(Auth::user()->email===$car->username) --}}
+    @if($car->username===Auth::user()->name)
+      <tr>
+        <td>{{$car->id}}</td>
+        <td>{{$car->username}}</td>
+        <td>{{$car->friendsname}}</td>
+        <td>{{$car->carcompany}}</td>
+        <td>{{$car->model}}</td>
+        <td>{{$car->price}}</td>
+        <td>{{$car->instalink}}</td>
+        <td>{{$car->fblink}}</td>
+        <td>{{$car->photolink}}</td>
+        <td>{{$car->snapchatid}}</td>
+        <td>{{$car->sportsperson}}</td>
+        <td>{{$car->favoritebook}}</td>
+        <td>{{$car->favoritebike}}</td>
+        <td>{{$car->favoritecar}}</td>
+        <td>{{$car->favoritebrand}}</td>
+ 
+        <td><a href="{{action('CarController@edit', $car->id)}}" class="btn btn-warning">Edit</a></td>
+        <td>
+          <form action="{{action('CarController@destroy', $car->id)}}" method="post">
+            @csrf
+            <input name="_method" type="hidden" value="DELETE">
+            <button class="btn btn-danger" type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {{-- @else
+        <div class="page-header">
+          <h1>Sorry!!<small><br>Please enter a valid username</small></h1>
+        </div>
+        @break --}}
+    {{-- @endif     --}}
+  @endif  
+  @endforeach
+    
         </tbody>
       </table>
       </div>
       </body>
 @endif
+
 @if(Auth::guest())
     <a href="/login" class="btn btn-info"> You need to Login >></a>
 @endif
+
 </html>

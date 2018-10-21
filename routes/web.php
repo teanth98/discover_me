@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +16,6 @@ Route::get('/', function () {
 Route::get('/','PagesController@index');
 Route::get('/about','PagesController@about');
 Route::get('/services','PagesController@services');
-
 Route::resource('posts','PostsController');
 
 /*
@@ -34,3 +32,9 @@ Route::get('car','CarController@index');
 Route::get('edit/{id}','CarController@edit');
 Route::post('edit/{id}','CarController@update');
 Route::delete('{id}','CarController@destroy');
+Route::group(['middleware' => 'web'], function () {
+	Route::get('fileUpload', function () {
+        return view('fileUpload');
+    });
+    Route::post('fileUpload', ['as'=>'fileUpload','uses'=>'HomeController@fileUpload']);
+});

@@ -11,6 +11,6 @@ class Car extends Eloquent
     protected $collection = 'cars';
     
     protected $fillable = [
-        'carcompany', 'model','price','fblink','instalink','photolink','snapchatid','favoritecar','favoritebike','favoritebrand','favoritebook'
+        'friendsname','username','carcompany', 'model','price','fblink','instalink','photolink','snapchatid','favoritecar','favoritebike','favoritebrand','favoritebook'
     ];
 }
